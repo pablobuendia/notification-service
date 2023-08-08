@@ -25,7 +25,7 @@ public class Sender {
 
   private void sendMessage(Notification message) {
     webClient.post()
-        .uri("/send")
+        .uri("/notification")
         .accept(MediaType.APPLICATION_JSON)
         .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromValue(message))

@@ -14,8 +14,8 @@ public class NotifierController {
 
   private final Map<String, Notifier> notifiers;
 
-  @PostMapping("/send")
-  public void send(@Valid @RequestBody final Notification notification) {
+  @PostMapping("/notification")
+  public void notification(@Valid @RequestBody final Notification notification) {
     notifiers.get(notification.getType()).send(notification.getType(), notification.getUserId(),
         notification.getMessage());
   }
