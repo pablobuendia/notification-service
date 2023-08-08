@@ -1,6 +1,5 @@
 package com.pablobuendia.notificationservice.sender;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Generated
 @Builder
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Notification {
 
   @NotBlank(message = "Notification type is mandatory")

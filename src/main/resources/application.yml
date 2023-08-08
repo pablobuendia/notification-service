@@ -1,11 +1,11 @@
 rate-limiter:
   limiters: status, news, marketing, invitations
   status:
-    seconds: 2
-    times: 4
+    seconds: 5
+    tokens: 3
   news:
     seconds: 1800
-    times: 4
+    tokens: 4
   marketing:
     seconds: 86400
-    times: 3
+    tokens: 3

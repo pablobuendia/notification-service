@@ -18,9 +18,12 @@ public class RateLimiter {
   @Setter
   private Integer tokens;
 
+  private Integer counter = 0;
+
   private Long nextReset = 0L;
 
   public RateLimiter(final Integer limit, final Integer tokens) {
+    log.info("Creating rate limiter with limit {} and tokens {}", limit, tokens);
     if (limit != null && limit > 0) {
       this.limit = limit;
     } else {
@@ -37,10 +40,10 @@ public class RateLimiter {
   public synchronized boolean acquire() {
     checkReset();
 
-    if (tokens == 0) {
+    if (counter == 0) {
       return false;
     } else {
-      tokens--;
+      counter--;
       return true;
     }
   }
@@ -48,7 +51,7 @@ public class RateLimiter {
   private void checkReset() {
     val currentTime = System.currentTimeMillis();
     if (currentTime > nextReset) {
-      tokens = 1;
+      counter = tokens;
       nextReset = currentTime + limit * 1000L;
     }
   }

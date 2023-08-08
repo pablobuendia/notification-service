@@ -1,10 +1,10 @@
-package com.pablobuendia.notificationservice.notifier;
+package com.pablobuendia.notificationservice.notifier.ratelimiter;
 
-import com.pablobuendia.notificationservice.notifier.ratelimiter.RateLimiter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +12,7 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class RateLimiterConfig {
 
   private static final String PREFIX = "rate-limiter.";
@@ -38,6 +39,7 @@ public class RateLimiterConfig {
         map.put((String) limiter, new Notifier(rateLimiter));
       });
     }
+    log.info("Loading limiters: {}", limiters);
   }
 
   private List getLimiterNames() {
