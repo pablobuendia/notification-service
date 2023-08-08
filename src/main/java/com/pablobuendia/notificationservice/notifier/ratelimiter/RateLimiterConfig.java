@@ -13,17 +13,6 @@ public class RateLimiterConfig {
   @Autowired
   private Environment env;
 
-  private RateLimiter createLimiter(String type) {
-    val rateLimiter = new RateLimiter();
-    rateLimiter.setRateLimiter(
-        env.getProperty(RATELIMITER + type + ".second", Integer.class),
-        env.getProperty(RATELIMITER + type + ".minute", Integer.class),
-        env.getProperty(RATELIMITER + type + ".hour", Integer.class),
-        env.getProperty(RATELIMITER + type + ".day", Integer.class));
-
-    return rateLimiter;
-  }
-
   @Bean
   public RateLimiter statusLimiter() {
     return createLimiter("status");
@@ -39,4 +28,11 @@ public class RateLimiterConfig {
     return createLimiter("marketing");
   }
 
+  private RateLimiter createLimiter(String type) {
+    val rateLimiter = new RateLimiter();
+    rateLimiter.setRateLimiter(
+        env.getProperty(RATELIMITER + type + ".seconds", Integer.class));
+
+    return rateLimiter;
+  }
 }
