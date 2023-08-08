@@ -37,6 +37,11 @@ public class RateLimiter {
     }
   }
 
+  public Integer getCounter() {
+    checkReset();
+    return counter;
+  }
+
   public synchronized boolean acquire() {
     checkReset();
 

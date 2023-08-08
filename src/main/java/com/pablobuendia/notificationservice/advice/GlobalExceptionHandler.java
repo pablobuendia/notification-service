@@ -21,12 +21,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(TypeNotFoundException.class)
-  @ResponseStatus(HttpStatus.CONFLICT)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
   @ResponseBody
   public ExceptionResponse handleNotFoundExceptions(TypeNotFoundException exception,
       HttpServletRequest httpServletRequest) {
     ExceptionResponse response = new ExceptionResponse(
-        HttpStatus.CONFLICT.value(), exception.getMessage(), LocalDateTime.now()
+        HttpStatus.NOT_FOUND.value(), exception.getMessage(), LocalDateTime.now()
     );
 
     response.setPath(httpServletRequest.getRequestURI());

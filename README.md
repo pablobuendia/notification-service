@@ -7,6 +7,59 @@ Rate-Limited Notification Service
 Create a Notification system that sends out email notifications of various types. Limit the number
 of emails sent to them by implementing a rate-limited version of NotificationService.
 
+## How to run
+
+- Clone the repo
+- Run `mvn spring-boot:run` to start the application
+
+## Solution description
+
+The solution is made up of two components, the sender and the notifier.
+The sender is responsible for sending notifications to the notifier.
+
+The notifier is rate-limited via the application.yml properties. To declare a new limiter, one must
+modify only this file.
+
+The limiter creation involves two steps:
+
+- declare a new limiter name in the `limiters` property
+- declare the time interval and the number of tokens in a section with the limiter name.
+
+Example:
+
+```yaml
+limiters: status
+status:
+  seconds: 5
+  tokens: 3
+```
+
+This combination means "allow 3 notifications every 5 seconds".
+
+To send a new message via the REST API, the PUT must be made to the `/ratelimiter/seconds` endpoint.
+
+Example body:
+
+```json
+{
+  "type": "status",
+  "userId": 3,
+  "message": "This is the message"
+}
+```
+
+To modify a limiter seconds interval, the PUT must be made to the `/ratelimiter/tokens` endpoint.
+Example body:
+
+```json
+{
+  "type": "news",
+  "seconds": 6
+}
+```
+
+Below is a small description of the iterations.
+
 ## First solution iteration
 
 The solution is a Spring Boot application that exposes a REST API to send notifications.
@@ -41,8 +94,11 @@ The second iteration of the solution adds a new component, the Sender, which is 
 separate package.
 It's main task is to simulate constant traffic of notifications.
 
-## How to run
+## Third solution iteration
 
-- Clone the repo
-- Run `mvn spring-boot:run` to start the application
+The third iteration now allows tokens and second limits. It also incorporates endpoints to modify
+them via the REST API.
+It adds exception global handling and simplifies internal components. It also adds tests,
+thought more are needed to fully test the solution.
+
 

@@ -49,6 +49,12 @@
       <artifactId>spring-boot-starter-webflux</artifactId>
       <groupId>org.springframework.boot</groupId>
     </dependency>
+    <dependency>
+      <artifactId>awaitility</artifactId>
+      <groupId>org.awaitility</groupId>
+      <scope>test</scope>
+      <version>4.2.0</version>
+    </dependency>
   </dependencies>
   <description>Rate-Limited Notification Service</description>
   <groupId>com.pablobuendia</groupId>

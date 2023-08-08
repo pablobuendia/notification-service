@@ -2,6 +2,7 @@ package com.pablobuendia.notificationservice.notifier.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Generated
+@Builder
 public class Notification {
 
   @NotBlank(message = "Notification type is mandatory")
