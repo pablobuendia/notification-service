@@ -15,16 +15,23 @@ import org.springframework.stereotype.Service;
 public class RateLimiter {
 
   private static final Integer DEFAULT_SECONDS_LIMIT = 60;
+  private static final Integer DEFAULT_TOKENS = 1;
 
   private Integer limit = 0;
   private Integer tokens = 1;
   private Long nextReset = 0L;
 
-  public void setRateLimiter(final Integer limit) {
+  public void setRateLimiter(final Integer limit, final Integer tokens) {
     if (limit != null && limit > 0) {
       this.limit = limit;
     } else {
       this.limit = DEFAULT_SECONDS_LIMIT;
+    }
+
+    if (tokens != null && tokens > 0) {
+      this.tokens = tokens;
+    } else {
+      this.tokens = DEFAULT_TOKENS;
     }
   }
 

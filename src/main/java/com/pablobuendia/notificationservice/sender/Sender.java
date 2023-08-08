@@ -36,7 +36,7 @@ public class Sender {
 
   private Notification buildMessage() {
     val randomValue = String.valueOf(random.nextInt(10));
-    return Notification.builder().type("STATUS").userId(randomValue)
+    return Notification.builder().type("status").userId(randomValue)
         .message("Hello world " + randomValue).build();
   }
 

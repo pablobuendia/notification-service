@@ -10,7 +10,7 @@ public class Notifier {
 
   private final RateLimiter rateLimiter;
 
-  public void send(String type, String userId, String message) {
+  public void send(final String type, final String userId, final String message) {
     if (rateLimiter.acquire()) {
       log.info("SENDING MESSAGE to user {} with type {} and message {}", userId, type, message);
     } else {

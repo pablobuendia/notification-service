@@ -1,4 +1,4 @@
-package com.pablobuendia.notificationservice.notifier;
+package com.pablobuendia.notificationservice.notifier.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotBlank;
