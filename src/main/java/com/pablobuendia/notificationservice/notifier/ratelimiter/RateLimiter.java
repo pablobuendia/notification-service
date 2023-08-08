@@ -1,27 +1,26 @@
 package com.pablobuendia.notificationservice.notifier.ratelimiter;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.springframework.stereotype.Service;
 
-@Service
 @Getter
-@Setter
-@RequiredArgsConstructor
 @Slf4j
 public class RateLimiter {
 
   private static final Integer DEFAULT_SECONDS_LIMIT = 60;
   private static final Integer DEFAULT_TOKENS = 1;
 
-  private Integer limit = 0;
-  private Integer tokens = 1;
+  @Setter
+  private Integer limit;
+
+  @Setter
+  private Integer tokens;
+
   private Long nextReset = 0L;
 
-  public void setRateLimiter(final Integer limit, final Integer tokens) {
+  public RateLimiter(final Integer limit, final Integer tokens) {
     if (limit != null && limit > 0) {
       this.limit = limit;
     } else {

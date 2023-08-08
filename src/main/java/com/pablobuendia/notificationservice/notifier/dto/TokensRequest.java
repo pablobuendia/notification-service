@@ -1,6 +1,7 @@
 package com.pablobuendia.notificationservice.notifier.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
@@ -10,14 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Generated
-public class Notification {
+public class TokensRequest {
 
   @NotBlank(message = "Notification type is mandatory")
   private String type;
 
-  @NotBlank(message = "User name is mandatory")
-  private String userId;
-
-  @NotBlank(message = "Message is mandatory")
-  private String message;
+  @PositiveOrZero
+  private Integer tokens;
 }

@@ -18,4 +18,18 @@ public class Notifier {
     }
   }
 
+  public void setLimiterSeconds(final Integer seconds) {
+    if (seconds == null || seconds <= 0) {
+      return;
+    }
+    rateLimiter.setLimit(seconds);
+  }
+
+  public void setTokens(final Integer tokens) {
+    if (tokens == null || tokens <= 0) {
+      return;
+    }
+    rateLimiter.setTokens(tokens);
+  }
+
 }

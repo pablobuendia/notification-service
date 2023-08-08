@@ -14,7 +14,7 @@ import org.springframework.core.env.Environment;
 @RequiredArgsConstructor
 public class RateLimiterConfig {
 
-  private final String PREFIX = "rate-limiter.";
+  private static final String PREFIX = "rate-limiter.";
   private final Environment env;
 
   @Bean
@@ -27,8 +27,7 @@ public class RateLimiterConfig {
       limiters.forEach(limiter -> {
         val seconds = env.getProperty(PREFIX + limiter + ".seconds", Integer.class);
         val tokens = env.getProperty(PREFIX + limiter + ".tokens", Integer.class);
-        val rateLimiter = new RateLimiter();
-        rateLimiter.setRateLimiter(seconds, tokens);
+        val rateLimiter = new RateLimiter(seconds, tokens);
 
         map.put((String) limiter, new Notifier(rateLimiter));
       });
