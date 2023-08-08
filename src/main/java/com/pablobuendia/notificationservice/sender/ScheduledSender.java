@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Slf4j
 @Service
-public class Sender {
+public class ScheduledSender {
 
   private final WebClient webClient = WebClient.create("http://localhost:8080");
   private final Random random = new Random();

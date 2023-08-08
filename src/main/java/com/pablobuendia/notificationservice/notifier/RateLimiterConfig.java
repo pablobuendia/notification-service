@@ -21,8 +21,14 @@ public class RateLimiterConfig {
   public Map<String, Notifier> notifiers() {
     val map = new HashMap<String, Notifier>();
 
-    val limiters = env.getProperty(PREFIX + "limiters", List.class);
+    val limiters = getLimiterNames();
 
+    loadLimiters(limiters, map);
+
+    return map;
+  }
+
+  private void loadLimiters(List limiters, HashMap<String, Notifier> map) {
     if (limiters != null) {
       limiters.forEach(limiter -> {
         val seconds = env.getProperty(PREFIX + limiter + ".seconds", Integer.class);
@@ -32,8 +38,10 @@ public class RateLimiterConfig {
         map.put((String) limiter, new Notifier(rateLimiter));
       });
     }
+  }
 
-    return map;
+  private List getLimiterNames() {
+    return env.getProperty(PREFIX + "limiters", List.class);
   }
 
 }

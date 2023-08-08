@@ -1,7 +1,7 @@
 package com.pablobuendia.notificationservice.notifier.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
@@ -16,6 +16,6 @@ public class TokensRequest {
   @NotBlank(message = "Notification type is mandatory")
   private String type;
 
-  @PositiveOrZero
+  @Positive
   private Integer tokens;
 }
